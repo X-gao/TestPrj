@@ -16,6 +16,7 @@ public class TreeSetTest {
         set.add(123);
         set.add(321);
         set.add(1);
+        set.add(3);
         System.out.println(set);
     }
 }
