@@ -1,6 +1,5 @@
-package gao.m3;
+package gao.collect;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
