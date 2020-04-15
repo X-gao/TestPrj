@@ -1,4 +1,4 @@
-package gao.collect;
+package gao.sort;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -7,6 +7,7 @@ import java.util.Date;
 import static java.lang.System.*;
 
 /**
+ * 排序
  * @author {USER}
  * @date yyyy/MM/dd
  */
@@ -30,6 +31,9 @@ public class TestSort {
         out.println(d);
 
     }
+    /**
+     * 快速排序调用
+     */
     public static void invokeSort(int[] arr,int start,int end){
         int mid = quickSort(arr, start, end);
         int max = mid-1;
@@ -61,6 +65,7 @@ public class TestSort {
     }
 
     /**
+     * 快速排序
      *@author 高祥
      *@params [arr]
      *@return void
