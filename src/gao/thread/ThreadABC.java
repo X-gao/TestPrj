@@ -9,10 +9,16 @@ package gao.thread;
  * @Date 2020/4/14 17:44
  */
 public class ThreadABC extends Thread{
+    ThreadLocal<String> threadLocal = new ThreadLocal<>();
     @Override
     public void run() {
+        threadLocal.set("1000");
         for (int i = 0; i < 10; i++) {
             System.out.println((char)(65+i));
         }
+        String s = threadLocal.get();
+        System.out.println(s);
+        String name = this.getName();
+        System.out.println(name);
     }
 }

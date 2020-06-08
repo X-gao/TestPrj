@@ -15,7 +15,10 @@ public class Thread1 implements Callable {
     @Override
     public String call() throws Exception {
         String result = "返回值";
-        System.out.println("线程启动");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+        }
         return result;
     }
+
 }

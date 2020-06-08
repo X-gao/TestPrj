@@ -1,4 +1,4 @@
-package gao;
+package gao.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * @author gx
  * @date 2016/10/31
  */
-public class Test {
+public class TestDate {
     public static void main(String[] args) throws ParseException {
         System.out.println("Hello World!");
         Date now = new Date();

@@ -13,11 +13,13 @@ public class TestThread {
     public static void main(String[] args) throws Exception {
         Thread1 t1 = new Thread1();
         ThreadABC threadABC = new ThreadABC();
-        threadABC.start();
         String call = t1.call();
-        synchronized (threadABC){
+        threadABC.start();
+       /* synchronized (threadABC){
             threadABC.wait(1000);
-        }
+            threadABC.notify();
+
+        }*/
         System.out.println(call);
     }
 }
