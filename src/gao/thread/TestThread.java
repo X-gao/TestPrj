@@ -1,6 +1,4 @@
 package gao.thread;
-
-
 /**
  * <b>线程学习</b></br>
  *
