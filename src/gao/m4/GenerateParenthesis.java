@@ -1,5 +1,6 @@
 package gao.m4;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +18,10 @@ public class GenerateParenthesis {
     public static void main(String[] args) {
         List<String> strings = generateParenthesis(3);
         System.out.println(strings);
+        SecureRandom random = new SecureRandom();
+        long  l = random.nextLong();
+        System.out.println(l);
+
     }
 
 

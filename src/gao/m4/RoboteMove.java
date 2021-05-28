@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
  * <b>移动范围</b></br>
- *
+ * 机器人最大移动范围
  * @Company 有谦软联（北京）信息技术有限公司</br>
  * @Version V1.0
  * @Author 高祥

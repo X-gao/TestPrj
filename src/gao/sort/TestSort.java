@@ -1,6 +1,6 @@
 package gao.sort;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -20,30 +20,18 @@ public class TestSort {
         Date start1Time = new Date();
         insertSort(arr);
         Date startTime = new Date();
-        invokeSort(arr1,start,end);
+        //invokeSort(arr1,start,end);
+        quickSort(arr1, 0, arr.length-1);
         Date endTime = new Date();
         out.println(Arrays.toString(arr));
+        out.println(Arrays.toString(arr1));
         out.println(start1Time.getTime());
         out.println(startTime.getTime());
         new Thread( () -> out.println("In Java8, Lambda expression rocks !!") ).start();
         out.println(endTime.getTime());
-        LocalDate d = LocalDate.now();
-        out.println(d);
+//        LocalDate d = LocalDate.now();
+//        out.println(d);
 
-    }
-    /**
-     * 快速排序调用
-     */
-    public static void invokeSort(int[] arr,int start,int end){
-        int mid = quickSort(arr, start, end);
-        int max = mid-1;
-        if(mid>start){
-            invokeSort(arr, start, max);
-        }
-        int min = mid+1;
-        if(mid<end&&mid!=0){
-            invokeSort(arr, min, end);
-        }
     }
     /**
      * 插入排序
@@ -71,32 +59,36 @@ public class TestSort {
      *@return void
      *@date   2020/3/10 15:40
      */
-    private static int quickSort(int[] arr,int start ,int end){
-        int index = 0;
+    private static void quickSort(int[] arr,int low ,int high){
+        int start = low;
+        int end = high;
         //1.取一个基准值
         int criterion  = arr[start];
-        //从后向前循环和基准值对比，如果比基准值大，不做处理。end-1
-        while(criterion <= arr[end] && end > start){
-            end--;
+        while(start<end){
+            //从后向前循环和基准值对比，如果比基准值大，不做处理。end-1
+            while(criterion <= arr[end] && end > start){
+                end--;
+            }
+            //如果该值比基准值小。交换位置。
+            if(criterion > arr[end] && start <= end){
+                arr[start] = arr[end];
+                arr[end] = criterion;
+            }
+            //从前向后循环对比，如果当前值比基准值小。不做处理。start+1
+            while(start < end && arr[start] < criterion){
+                start++;
+            }
+            //当前值比基准值大。交换位置
+            if(start <= end && criterion < arr[start] ){
+                arr[end] = arr[start];
+                arr[start] = criterion;
+            }
         }
-        //如果该值比基准值小。交换位置。
-        if(criterion > arr[end] && start <= end){
-            arr[start] = arr[end];
-            arr[end] = criterion;
+        if(low<start){
+            quickSort(arr, low, start-1);
         }
-        //从前向后循环对比，如果当前值比基准值小。不做处理。start+1
-        while(start < end && arr[start] < criterion){
-            start++;
+        if(end<high){
+            quickSort(arr, end+1, high);
         }
-        //当前值比基准值小。交换位置
-        if(start <= end && criterion < arr[start] ){
-            arr[end] = arr[start];
-            arr[start] = criterion;
-        }
-        index = start;
-        if(start < end){
-            index = quickSort(arr,start,end);
-        }
-        return index;
     }
 }

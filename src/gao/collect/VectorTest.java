@@ -2,6 +2,7 @@ package gao.collect;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
 
 /**
@@ -25,6 +26,9 @@ public class VectorTest {
 
         String hourMinute=sdh.format(nowDate).substring(11);
         System.out.println(hourMinute);
+
+
+        HashMap map = new HashMap();
     }
 
 }

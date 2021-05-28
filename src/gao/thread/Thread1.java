@@ -11,14 +11,23 @@ import java.util.concurrent.Callable;
  * @Date 2020/4/14 17:37
  */
 public class Thread1 implements Callable {
+    public  static Integer a = 100;
 
     @Override
     public String call() throws Exception {
         String result = "返回值";
-        for (int i = 0; i < 10; i++) {
-            System.out.println(i);
+        while(true){
+            synchronized (this){//不能锁a对象，如果锁a,虽然内部代码做了同步，但是此时另一个线程可能已经获取到相同得a值，应该锁操作a值得对象，即
+                //当前对象
+                if(a>0){
+                    System.out.println(Thread.currentThread().getName()+"a="+a);
+                    a--;
+                }else{
+                    break;
+                }
+            }
+
         }
         return result;
     }
-
 }

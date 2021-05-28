@@ -27,9 +27,8 @@ public class FtpUtils {
     private static FTPClient ftpClient;
     /**
      * 初始化ftp连接
-     * @return
      */
-	public static boolean initFtp(){
+	private static boolean initFtp(){
 		ftpClient = new FTPClient();
 		try {
 			//连接
@@ -49,21 +48,17 @@ public class FtpUtils {
 				System.out.println("connect failed...ftp服务器:"+Constants.FTP_HOST+":"+Constants.FTP_PORT); 
 				throw new RuntimeException("登录Ftp失败");
 			}
-            System.out.println("connect successfu...ftp服务器:"+Constants.FTP_HOST+":"+Constants.FTP_PORT); 
-		} catch (SocketException e) {
-			e.printStackTrace();
-			throw new RuntimeException("初始化ftp连接失败！");
+            System.out.println("connect successful...ftp服务器:"+Constants.FTP_HOST+":"+Constants.FTP_PORT);
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException("初始化ftp连接失败！");
 		}
-		return true;
+        return true;
 	}
 	/**
 	 * 关闭ftp 链接 
-	 * @return
 	 */
-	public static void close(){
+	private static void close(){
 		if (ftpClient.isConnected()) {
 			try {
 				ftpClient.logout();
@@ -82,8 +77,6 @@ public class FtpUtils {
      *  ftp服务保存地址
      *   上传到ftp的文件名
      *    待上传文件的名称（绝对地址） *
-     * @return
-	 * @throws Exception 
      */
      public static void uploadFile(List<File> files) {
          InputStream inputStream = null;
@@ -116,7 +109,7 @@ public class FtpUtils {
                  boolean appendFile = ftpClient.appendFile(name, inputStream);
                  //另一种上传方式
                  ///boolean storeFile = ftpClient.storeFile(name, inputStream);
-                 if(appendFile==false){
+                 if(!appendFile){
                 	 throw new RuntimeException("上传文件失败");
                  }
                  System.out.println("上传文件成功");
@@ -146,7 +139,7 @@ public class FtpUtils {
      /** * 删除文件 * 
       *  FTP服务器保存目录 *
       * @param filename 要删除的文件名称 * 
-      * @return */ 
+      **/
       public static boolean deleteFile(String filename){ 
           boolean flag = false; 
           try { 
@@ -174,17 +167,18 @@ public class FtpUtils {
           }
           return flag; 
       }
-      /* 
+      /**
        * 从FTP服务器下载文件 
        * @param fileName 文件名称 
        */  
       public static File downloadFtpFile(
-              String fileName) {  
+              String fileName) throws IOException {
     	  //初始化ftp 连接
           initFtp();
           File localFile = new File(fileName);  
-          try {  
-              ftpClient.setControlEncoding("UTF-8"); // 中文支持  
+          try {
+              // 中文支持
+              ftpClient.setControlEncoding("UTF-8");
               //设置文件传输类型
               ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
               //获得当前所在文件目录
@@ -203,11 +197,7 @@ public class FtpUtils {
               ftpClient.retrieveFile(fileName, os);
               os.flush();
               os.close();  
-          } catch (FileNotFoundException e) {  
-              throw new RuntimeException("下载失败",e);
-          } catch (SocketException e) {  
-               throw new RuntimeException("下载失败",e);
-          } catch (IOException e) {  
+          } catch (FileNotFoundException | SocketException e) {
               throw new RuntimeException("下载失败",e);
           } finally {
         	  close();

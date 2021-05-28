@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/OpenJdk.iml" filepath="$PROJECT_DIR$/.idea/modules/OpenJdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/OpenJdk.main.iml" filepath="$PROJECT_DIR$/.idea/modules/OpenJdk.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/OpenJdk.test.iml" filepath="$PROJECT_DIR$/.idea/modules/OpenJdk.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MethodOOM/TEST1.6.iml" filepath="$PROJECT_DIR$/MethodOOM/TEST1.6.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TestPrj.iml" filepath="$PROJECT_DIR$/.idea/TestPrj.iml" />
     </modules>
   </component>
